@@ -1,0 +1,19 @@
+<div class="selected-card-bg">
+  <mat-card class="selected-card-body">
+    <img
+      mat-card-image
+      class="selected-card-body-img"
+      [src]="data.image"
+      [alt]="data.name"
+    />
+    <div class="selected-card-body-text">
+      <mat-card-title>{{ data.name }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ "app.id" | translate }}{{ data.id }}</mat-card-subtitle
+      >
+      <mat-card-subtitle>
+        {{ "app.specie" | translate }} {{ data.species }}
+      </mat-card-subtitle>
+    </div>
+  </mat-card>
+</div>

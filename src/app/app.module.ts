@@ -14,14 +14,26 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExponentialStrengthPipe } from './pipes/exponential-strength.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { CharacterCardDialogComponent } from './components/character-card-dialog/character-card-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, CharactersListComponent],
+  declarations: [
+    AppComponent,
+    CharactersListComponent,
+    ExponentialStrengthPipe,
+    SearchFilterPipe,
+    CharacterCardDialogComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,6 +49,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'es',
     }),
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

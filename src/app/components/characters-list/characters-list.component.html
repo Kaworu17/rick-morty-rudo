@@ -51,8 +51,13 @@
 <div class="list-container">
   <div
     (click)="showInfo(character)"
+    (click)="openDialog(character)"
     class="card-character"
-    *ngFor="let character of characters | slice : initialChar : finalChar"
+    *ngFor="
+      let character of characters
+        | slice : initialChar : finalChar
+        | searchFilter : searchTerm
+    "
   >
     <img
       class="card-character-img"
@@ -99,3 +104,12 @@
     </div>
   </mat-card>
 </div>
+
+<hr />
+
+<h2>Power Boost Calculator</h2>
+<label for="power-input">Normal power: </label>
+<input id="power-input" type="text" [(ngModel)]="power" />
+<label for="boost-input">Boost factor: </label>
+<input id="boost-input" type="text" [(ngModel)]="factor" />
+<p>Super Hero Power: {{ power | exponentialStrength : factor }}</p>

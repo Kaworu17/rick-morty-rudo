@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Character } from 'src/app/models/character.model';
+import { Character } from 'src/app/models/api-response.model';
 import { CharactersService } from 'src/app/services/characters.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CharacterCardDialogComponent } from '../character-card-dialog/character-card-dialog.component';
 
 @Component({
   selector: 'app-characters-list',
@@ -11,7 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class CharactersListComponent implements OnInit {
   constructor(
     private charactersService: CharactersService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public dialog: MatDialog
   ) {
     this.currentLanguage = translate.currentLang;
   }
@@ -26,6 +29,15 @@ export class CharactersListComponent implements OnInit {
   currentLanguage: string;
 
   selectedCharacter: Character | null = null;
+
+  power = 5;
+  factor = 1;
+
+  openDialog(character: Character) {
+    const dialogRef = this.dialog.open(CharacterCardDialogComponent, {
+      data: character,
+    });
+  }
 
   ngOnInit(): void {
     this.searchCharacters();
@@ -63,8 +75,8 @@ export class CharactersListComponent implements OnInit {
   }
 
   showInfo(character: Character) {
-    console.log(character);
-    this.selectedCharacter = character;
+    /* console.log(character);
+    this.selectedCharacter = character; */
   }
 
   hideInfo() {
